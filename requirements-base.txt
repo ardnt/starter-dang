@@ -1,0 +1,6 @@
+dj-database-url
+Django
+graphene-django
+psycopg2
+python-jose
+requests

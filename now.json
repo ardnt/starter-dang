@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "name": "dang-starter",
+  "scope": "ardent",
+
+  "build": {
+    "env": {
+      "SECRET_KEY": "@dang-secret-key"
+    }
+  },
+
+  "builds": [
+    {
+      "src": "now_build_staticfiles.sh",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "staticfiles_build"
+      }
+    },
+    {
+      "src": "app/wsgi.py",
+      "use": "@ardnt/now-python-wsgi",
+      "config": {
+        "maxLambdaSize": "30mb"
+      }
+    }
+  ],
+
+  "env": {
+    "AUTH0_BASENAME": "@dang-auth0-basename",
+    "AUTH0_RP_CLIENT_ID": "@dang-auth0-client-id",
+    "AUTH0_RP_CLIENT_SECRET": "@dang-auth0-client-secret",
+    "DATABASE_URL": "@dang-database-url",
+    "DJANGO_SETTINGS_MODULE": "app.settings.production",
+    "SECRET_KEY": "@dang-secret-key"
+  },
+
+  "files": [
+    "staticfiles"
+  ],
+
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app/wsgi.py"
+    }
+  ]
+}

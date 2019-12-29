@@ -1,0 +1,15 @@
+# Environment management
+.direnv/
+.envrc
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Project
+*.md
+.flake8
+now.json
+requirements-base.txt
+requirements-test.txt
