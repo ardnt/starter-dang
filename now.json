@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "name": "starter-dang",
+
+  "build": {
+    "env": {
+      "SECRET_KEY": "@secret-key"
+    }
+  },
+
+  "builds": [
+    {
+      "src": "now_build_staticfiles.sh",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "staticfiles_build"
+      }
+    },
+    {
+      "src": "app/wsgi.py",
+      "use": "@ardnt/now-python-wsgi",
+      "config": {
+        "maxLambdaSize": "30mb"
+      }
+    }
+  ],
+
+  "env": {
+    "AUTH0_BASENAME": "@auth0-basename",
+    "AUTH0_RP_CLIENT_ID": "@auth0-client-id",
+    "AUTH0_RP_CLIENT_SECRET": "@auth0-client-secret",
+    "DATABASE_URL": "@database-url",
+    "DJANGO_SETTINGS_MODULE": "app.settings.production",
+    "SECRET_KEY": "@secret-key"
+  },
+
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app/wsgi.py"
+    }
+  ]
+}

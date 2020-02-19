@@ -1,0 +1,23 @@
+image: python:3.6
+
+services:
+  - postgres:11
+
+cache:
+  paths:
+    - cache/
+
+before_script:
+  - python -V
+  - rm -rf psycopg2 # Remove the psycopg2 folder we provide for AWS Lambda
+  - pip install --cache-dir cache/pip -r requirements.txt
+  - pip install --cache-dir cache/pip -r requirements-test.txt
+
+test:
+  variables:
+    DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+    DJANGO_SETTINGS_MODULE: app.settings.test
+  script:
+    - flake8
+    - black --check .
+    - pytest
