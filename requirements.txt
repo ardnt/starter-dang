@@ -16,7 +16,7 @@ idna==2.8
 promise==2.3
 pyasn1==0.4.8
 pytz==2019.3
-rsa==4.0
+rsa==4.1
 Rx==1.6.1
 singledispatch==3.4.0.3
 six==1.14.0
