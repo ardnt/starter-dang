@@ -1,7 +1,4 @@
 {
-  "version": 2,
-  "name": "starter-dang",
-
   "build": {
     "env": {
       "SECRET_KEY": "@secret-key"
