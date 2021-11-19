@@ -1,5 +1,6 @@
 dj-database-url
 Django
 graphene-django
+psycopg2-binary
 python-jose
 requests

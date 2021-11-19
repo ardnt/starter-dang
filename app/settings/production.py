@@ -6,7 +6,7 @@ from .base import *  # noqa F403 F401
 
 
 ALLOWED_HOSTS = [
-    '.now.sh',
+    '.vercel.app',
 ]
 
 DEBUG = False
