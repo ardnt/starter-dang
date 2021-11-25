@@ -1,4 +1,4 @@
-from django.utils.http import is_safe_url
+from django.utils.http import url_has_allowed_host_and_scheme
 
 
 def get_next_url(request, redirect_field_name):
@@ -11,7 +11,7 @@ def get_next_url(request, redirect_field_name):
 
         hosts = [request.get_host()]
         kwargs['allowed_hosts'] = hosts
-        if is_safe_url(**kwargs):
+        if url_has_allowed_host_and_scheme(**kwargs):
             return next_url
 
     return None
