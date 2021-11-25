@@ -79,7 +79,7 @@ def get_or_create_user(access_token, id_token, payload):
     try:
         user = User.objects.get(email=email)
         if user.remote_id:
-            # Check th user remote ID if one is present (i.e., the user has
+            # Check the user remote ID if one is present (i.e., the user has
             # logged in before).
             if user.remote_id != remote_id:
                 raise SuspiciousOperation('User remote id mismatch')

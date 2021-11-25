@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.6
+      - image: cimg/postgres:13.4
+        environment:
+          POSTGRES_USER: postgres
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ .Branch }}-{{ checksum "requirements.txt" }}-{{ checksum "requirements-test.txt" }}
+      - run:
+          name: Install requirements
+          command: |
+            python3 -m venv .venv
+            . .venv/bin/activate
+            pip install -r requirements.txt
+            pip install -r requirements-test.txt
+      - save_cache:
+          key: deps-{{ .Branch }}-{{ checksum "requirements.txt" }}-{{ checksum "requirements-test.txt" }}
+          paths:
+            - venv
+      - run:
+          name: Run tests
+          command: |
+            . .venv/bin/activate
+            black --check .
+            flake8
+            pytest
+          environment:
+            DATABASE_URL: postgresql://postgres@localhost/test
+            DJANGO_SETTINGS_MODULE: app.settings.test
+            SECRET_KEY: insecure

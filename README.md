@@ -3,7 +3,7 @@
 Starter web application for:
 - [**D**jango](https://www.djangoproject.com/) web framework
 - [**A**uth0](https://auth0.com/) authentication and user management
-- [**N**ow](https://zeit.co/) serverless compute
+- [**N**ow](https://vercel.com/) (really vercel) serverless compute
 - [**G**raphQL](https://graphene-python.org/) API
 
 ## Settings

@@ -30,7 +30,7 @@ class AuthenticationMiddleware(DjangoAuthenticationMiddleware):
 
 
 class BearerAuthenticationMiddleware(MiddlewareMixin):
-    """Handle request that include an ID token as authentication
+    """Handle requests that include an ID token as authentication
 
     Clients should attach an ID token to the request in the Authorization
     header, e.g.:
@@ -75,14 +75,14 @@ class BearerAuthenticationMiddleware(MiddlewareMixin):
 
         if email is None or remote_id is None or audience is None:
             # The payload is not as expected, nothing more to do
-            logger.warning('Bearer token missing required data: ' f'{auth_header}')
+            logger.warning(f'Bearer token missing required data: {auth_header}')
             return self.fail_anonymously(request)
 
         if audience != OIDC_RP_CLIENT_ID:
             # We should not consume this token, because it was mean for a
             # different application
             logger.warning(
-                f'Bearer token has foreign audience: {audience}, ' f'{auth_header}'
+                f'Bearer token has foreign audience: {audience}, {auth_header}'
             )
             return self.fail_anonymously(request)
 

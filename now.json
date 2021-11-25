@@ -5,14 +5,14 @@
   "builds": [
     {
       "src": "now_build_staticfiles.sh",
-      "use": "@now/static-build",
+      "use": "@vercel/static-build",
       "config": {
         "distDir": "staticfiles_build"
       }
     },
     {
       "src": "app/wsgi.py",
-      "use": "@ardnt/now-python-wsgi",
+      "use": "@ardnt/vercel-python-wsgi",
       "config": {
         "maxLambdaSize": "30mb"
       }

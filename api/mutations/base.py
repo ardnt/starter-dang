@@ -4,8 +4,7 @@ from ..exceptions import NotLoggedException
 
 
 class FormMutation(graphene.Mutation):
-    """Abstract mutation class to dry out mutations that work with Django forms
-    """
+    """Abstract mutation class to dry out mutations that work with Django forms"""
 
     class Meta:
         abstract = True
