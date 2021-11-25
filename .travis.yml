@@ -11,7 +11,7 @@ install:
   - pip install -r requirements-test.txt
 
 env:
-  - DATABASE_URL=postgresql://postgres@localhost/travisci DJANGO_SETTINGS_MODULE=app.settings.test
+  - DATABASE_URL=postgresql://postgres@localhost/travisci DJANGO_SETTINGS_MODULE=app.settings.test SECRET_KEY=insecure
 
 script:
   - flake8
